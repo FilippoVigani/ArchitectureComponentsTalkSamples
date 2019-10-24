@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.acts.R
 import kotlinx.android.synthetic.main.fragment_counter.*
-import kotlinx.android.synthetic.main.fragment_counter.view.*
 
 class CounterFragment: Fragment() {
 
