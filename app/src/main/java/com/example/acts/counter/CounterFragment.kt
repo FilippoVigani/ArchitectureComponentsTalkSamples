@@ -43,4 +43,20 @@ class CounterFragment: Fragment() {
         counter = newValue
         counterTextView.text = counter.toString()
     }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putInt(STATE_COUNTER, counter)
+        super.onSaveInstanceState(outState)
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        savedInstanceState?.apply {
+            updateCounter(getInt(STATE_COUNTER))
+        }
+    }
+
+    companion object {
+        const val STATE_COUNTER = "COUNTER"
+    }
 }
