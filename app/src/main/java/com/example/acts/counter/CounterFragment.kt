@@ -5,12 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProviders
 import com.example.acts.R
 import kotlinx.android.synthetic.main.fragment_counter.*
 
 class CounterFragment: Fragment() {
 
-    var counter = 0
+    //private val viewModel by lazy { ViewModelProviders.of(this).get(CounterViewModel::class.java) }
+    private val viewModel by viewModels<CounterViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -22,7 +25,7 @@ class CounterFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        updateCounter(counter)
+        updateCounter(viewModel.counter)
         increaseButton.setOnClickListener {
             increaseCounter()
         }
@@ -32,31 +35,15 @@ class CounterFragment: Fragment() {
     }
 
     fun increaseCounter(){
-        updateCounter(counter + 1)
+        updateCounter(viewModel.counter + 1)
     }
 
     fun decreaseCounter(){
-        updateCounter(counter - 1)
+        updateCounter(viewModel.counter - 1)
     }
 
     private fun updateCounter(newValue: Int){
-        counter = newValue
-        counterTextView.text = counter.toString()
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        outState.putInt(STATE_COUNTER, counter)
-        super.onSaveInstanceState(outState)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        savedInstanceState?.apply {
-            updateCounter(getInt(STATE_COUNTER))
-        }
-    }
-
-    companion object {
-        const val STATE_COUNTER = "COUNTER"
+        viewModel.counter = newValue
+        counterTextView.text = viewModel.counter.toString()
     }
 }
