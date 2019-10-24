@@ -10,6 +10,14 @@ class CounterViewModel(private val state: SavedStateHandle) : ViewModel() {
             state.set(STATE_COUNTER, counter)
         }
 
+    fun increaseCounter(){
+        counter++
+    }
+
+    fun decreaseCounter(){
+        counter++
+    }
+
     companion object{
         const val STATE_COUNTER = "COUNTER"
     }

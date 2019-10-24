@@ -27,25 +27,18 @@ class CounterFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        updateCounter(viewModel.counter)
+        updateCounter()
         increaseButton.setOnClickListener {
-            increaseCounter()
+            viewModel.increaseCounter()
+            updateCounter()
         }
         decreaseButton.setOnClickListener {
-            decreaseCounter()
+            viewModel.decreaseCounter()
+            updateCounter()
         }
     }
 
-    fun increaseCounter(){
-        updateCounter(viewModel.counter + 1)
-    }
-
-    fun decreaseCounter(){
-        updateCounter(viewModel.counter - 1)
-    }
-
-    private fun updateCounter(newValue: Int){
-        viewModel.counter = newValue
+    private fun updateCounter(){
         counterTextView.text = viewModel.counter.toString()
     }
 }
