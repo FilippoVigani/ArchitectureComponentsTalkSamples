@@ -6,14 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.SavedStateViewModelFactory
 import com.example.acts.R
 import kotlinx.android.synthetic.main.fragment_counter.*
 
 class CounterFragment: Fragment() {
 
-    //private val viewModel by lazy { ViewModelProviders.of(this).get(CounterViewModel::class.java) }
-    private val viewModel by viewModels<CounterViewModel>()
+    private val viewModel by viewModels<CounterViewModel> {
+        val application = activity?.application ?: throw IllegalStateException("SavedStateViewModelFactory can be accessed only when Fragment is attached")
+        SavedStateViewModelFactory(application,this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

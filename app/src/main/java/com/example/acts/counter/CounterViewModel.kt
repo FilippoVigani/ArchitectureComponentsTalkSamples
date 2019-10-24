@@ -1,7 +1,16 @@
 package com.example.acts.counter
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 
-class CounterViewModel : ViewModel() {
-    var counter = 0
+class CounterViewModel(private val state: SavedStateHandle) : ViewModel() {
+    var counter = state.get<Int>(STATE_COUNTER) ?: 0
+        set(value) {
+            field = value
+            state.set(STATE_COUNTER, counter)
+        }
+
+    companion object{
+        const val STATE_COUNTER = "COUNTER"
+    }
 }
