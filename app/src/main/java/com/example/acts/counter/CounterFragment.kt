@@ -13,8 +13,7 @@ import kotlinx.android.synthetic.main.fragment_counter.*
 class CounterFragment: Fragment() {
 
     private val viewModel by viewModels<CounterViewModel> {
-        val application = activity?.application ?: throw IllegalStateException("SavedStateViewModelFactory can be accessed only when Fragment is attached")
-        SavedStateViewModelFactory(application,this)
+        SavedStateViewModelFactory(requireActivity().application,this)
     }
 
     override fun onCreateView(
