@@ -15,7 +15,7 @@ class CounterViewModel(private val state: SavedStateHandle) : ViewModel() {
     }
 
     fun decreaseCounter(){
-        counter++
+        counter--
     }
 
     companion object{
