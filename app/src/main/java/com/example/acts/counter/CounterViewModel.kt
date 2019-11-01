@@ -1,21 +1,19 @@
 package com.example.acts.counter
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 
 class CounterViewModel(private val state: SavedStateHandle) : ViewModel() {
-    var counter = state.get<Int>(STATE_COUNTER) ?: 0
-        set(value) {
-            field = value
-            state.set(STATE_COUNTER, counter)
-        }
+    private val _counter = state.getLiveData(STATE_COUNTER, 0)
+    val counter: LiveData<Int> = _counter
 
     fun increaseCounter(){
-        counter++
+        _counter.value = _counter.value?.plus(1)
     }
 
     fun decreaseCounter(){
-        counter--
+        _counter.value = _counter.value?.minus(1)
     }
 
     companion object{

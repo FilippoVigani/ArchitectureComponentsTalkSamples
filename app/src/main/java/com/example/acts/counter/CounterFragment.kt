@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.SavedStateViewModelFactory
+import androidx.lifecycle.observe
 import com.example.acts.R
 import com.example.acts.databinding.FragmentCounterBinding
 
@@ -22,24 +23,18 @@ class CounterFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentCounterBinding.inflate(inflater, container, false)
+        binding = FragmentCounterBinding.inflate(inflater, container, false).apply {
+            increaseButton.setOnClickListener {
+                viewModel.increaseCounter()
+            }
+            decreaseButton.setOnClickListener {
+                viewModel.decreaseCounter()
+            }
+            viewModel.counter.observe(this@CounterFragment){
+                counterTextView.text = it.toString()
+            }
+        }
+
         return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        updateCounter()
-        binding.increaseButton.setOnClickListener {
-            viewModel.increaseCounter()
-            updateCounter()
-        }
-        binding.decreaseButton.setOnClickListener {
-            viewModel.decreaseCounter()
-            updateCounter()
-        }
-    }
-
-    private fun updateCounter(){
-        binding.counterTextView.text = viewModel.counter.toString()
     }
 }
