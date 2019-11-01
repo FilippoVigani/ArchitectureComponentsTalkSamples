@@ -8,10 +8,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.SavedStateViewModelFactory
 import com.example.acts.R
-import kotlinx.android.synthetic.main.fragment_counter.*
+import com.example.acts.databinding.FragmentCounterBinding
 
 class CounterFragment: Fragment() {
 
+    private lateinit var binding: FragmentCounterBinding
     private val viewModel by viewModels<CounterViewModel> {
         SavedStateViewModelFactory(requireActivity().application,this)
     }
@@ -21,23 +22,24 @@ class CounterFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_counter, container, false)
+        binding = FragmentCounterBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         updateCounter()
-        increaseButton.setOnClickListener {
+        binding.increaseButton.setOnClickListener {
             viewModel.increaseCounter()
             updateCounter()
         }
-        decreaseButton.setOnClickListener {
+        binding.decreaseButton.setOnClickListener {
             viewModel.decreaseCounter()
             updateCounter()
         }
     }
 
     private fun updateCounter(){
-        counterTextView.text = viewModel.counter.toString()
+        binding.counterTextView.text = viewModel.counter.toString()
     }
 }
