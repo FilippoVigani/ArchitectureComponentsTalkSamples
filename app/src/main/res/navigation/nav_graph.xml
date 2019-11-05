@@ -8,5 +8,20 @@
     <fragment
         android:id="@+id/counterFragment"
         android:name="com.example.acts.counter.CounterFragment"
-        android:label="@string/app_name" />
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_counter">
+        <action
+            android:id="@+id/action_counterFragment_to_collectFragment"
+            app:destination="@id/collectFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/collectFragment"
+        android:name="com.example.acts.collect.CollectFragment"
+        android:label="@string/collect"
+        tools:layout="@layout/fragment_collect" />
 </navigation>

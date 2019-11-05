@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="32dp"
             android:textAppearance="?textAppearanceHeadline3"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/collectButton"
             app:layout_constraintEnd_toStartOf="@id/increaseButton"
             app:layout_constraintStart_toEndOf="@id/decreaseButton"
             app:layout_constraintTop_toBottomOf="@id/characterImage"
@@ -68,6 +68,18 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/counterTextView"
             app:layout_constraintTop_toTopOf="@id/counterTextView" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/collectButton"
+            android:text="@string/collect"
+            android:onClick="@{(view) -> viewModel.collect()}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="?attr/colorSecondary"
+            app:layout_constraintTop_toBottomOf="@id/counterTextView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

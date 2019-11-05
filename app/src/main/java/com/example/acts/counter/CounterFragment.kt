@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.SavedStateViewModelFactory
+import androidx.lifecycle.observe
+import androidx.navigation.fragment.findNavController
 import com.example.acts.databinding.FragmentCounterBinding
 
 class CounterFragment : Fragment() {
@@ -21,11 +23,21 @@ class CounterFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return FragmentCounterBinding.inflate(inflater, container, false)
+        binding = FragmentCounterBinding.inflate(inflater, container, false)
             .apply {
-                binding = this
                 lifecycleOwner = viewLifecycleOwner
                 viewModel = this@CounterFragment.viewModel
-            }.root
+            }
+
+        initObservers()
+
+        return binding.root
+    }
+
+    private fun initObservers(){
+        viewModel.uiEventLiveData.observe(viewLifecycleOwner){
+            val directions = CounterFragmentDirections.actionCounterFragmentToCollectFragment()
+            findNavController().navigate(directions)
+        }
     }
 }
