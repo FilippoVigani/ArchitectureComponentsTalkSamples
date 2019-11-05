@@ -36,7 +36,9 @@ class CounterFragment : Fragment() {
 
     private fun initObservers(){
         viewModel.uiEventLiveData.observe(viewLifecycleOwner){
-            val directions = CounterFragmentDirections.actionCounterFragmentToCollectFragment()
+            val directions = CounterFragmentDirections.actionCounterFragmentToCollectFragment(
+                count = viewModel.counter.value ?: 0
+            )
             findNavController().navigate(directions)
         }
     }

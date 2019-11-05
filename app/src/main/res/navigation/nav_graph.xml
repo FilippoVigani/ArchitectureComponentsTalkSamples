@@ -16,12 +16,18 @@
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" >
+        </action>
     </fragment>
 
     <fragment
         android:id="@+id/collectFragment"
         android:name="com.example.acts.collect.CollectFragment"
         android:label="@string/collect"
-        tools:layout="@layout/fragment_collect" />
+        tools:layout="@layout/fragment_collect">
+        <argument
+            android:name="count"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
 </navigation>
