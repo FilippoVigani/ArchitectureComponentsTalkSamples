@@ -17,7 +17,7 @@ class CollectFragment : Fragment() {
         SavedStateViewModelFactory(requireActivity().application, this)
     }
 
-    val args by navArgs<CollectFragmentArgs>()
+    private val args by navArgs<CollectFragmentArgs>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
