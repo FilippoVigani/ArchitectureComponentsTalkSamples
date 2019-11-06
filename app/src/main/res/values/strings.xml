@@ -3,4 +3,5 @@
     <string name="collect">Collect</string>
     <string name="collecting_count">Collecting %d Meeseeks</string>
     <string name="collecting_title">Collect %d</string>
+    <string name="meeseek_purpose">Purpose: %s</string>
 </resources>
