@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.SavedStateViewModelFactory
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
+import com.example.acts.R
 import com.example.acts.databinding.FragmentCounterBinding
 
 class CounterFragment : Fragment() {
@@ -37,7 +38,8 @@ class CounterFragment : Fragment() {
     private fun initObservers(){
         viewModel.uiEventLiveData.observe(viewLifecycleOwner){
             val directions = CounterFragmentDirections.actionCounterFragmentToCollectFragment(
-                count = viewModel.counter.value ?: 0
+                count = viewModel.counter.value ?: 0,
+                argName = resources.getString(R.string.collecting_title, viewModel.counter.value ?: 0)
             )
             findNavController().navigate(directions)
         }

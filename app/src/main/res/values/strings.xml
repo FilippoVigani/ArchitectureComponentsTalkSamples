@@ -2,4 +2,5 @@
     <string name="app_name">ACTS</string>
     <string name="collect">Collect</string>
     <string name="collecting_count">Collecting %d Meeseeks</string>
+    <string name="collecting_title">Collect %d</string>
 </resources>
